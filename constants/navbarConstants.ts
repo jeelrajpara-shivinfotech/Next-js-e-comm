@@ -1,4 +1,4 @@
-export const navbarConsts = {
+export const navbarConst = {
     cart : "Cart",
 } as const
 

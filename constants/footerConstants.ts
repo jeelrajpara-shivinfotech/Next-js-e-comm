@@ -1,4 +1,4 @@
-export const footerConsts = {
+export const footerConst = {
     label1 : "Your trusted destination for quality products and exceptional service.",
     email : "support@shophub.com",
     phone : "+1 (555) 123-4567",
