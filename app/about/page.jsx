@@ -1,5 +1,5 @@
 import { BiCheck } from 'react-icons/bi'
-import aboutImage from "../../public/modern-retail-store-interior.jpeg"
+import aboutImage from "@/assets/modern-retail-store-interior.jpeg"
 import Image from 'next/image'
 import { aboutConsts, aboutFeatures, statsConstants, valuesConstants } from "../../constants/aboutPageConstants"
 
@@ -21,7 +21,7 @@ export default function About() {
                             src={aboutImage}
                             height={100}
                             width={100}
-                            alt="ShopHub store"
+                            alt={aboutConsts.imgAlt}
                             className="w-full h-auto rounded-2xl shadow-lg"
                         />
                     </div>

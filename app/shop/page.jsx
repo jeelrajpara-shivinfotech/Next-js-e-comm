@@ -1,9 +1,7 @@
 import React from 'react'
 
-function shop() {
-  return (
-    <div>shop</div>
+export default async function Shop(){
+  return(
+    <div></div>
   )
 }
-
-export default shop

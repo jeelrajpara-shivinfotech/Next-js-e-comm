@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import carouselImage from "@/public/carousel-bg-1.png"
+import carouselImage from "@/assets/carousel-bg-1.png"
 import Image from 'next/image'
 import { PiGreaterThan, PiLessThan } from 'react-icons/pi'
 import { slides } from '@/constants/homePageConstants'

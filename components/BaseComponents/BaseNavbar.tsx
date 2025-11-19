@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Image from 'next/image';
-import logo from "@/public/logo.webp"
+import logo from "@/assets/logo.webp"
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
 import { navbarConst, navLinks } from '@/constants/navbarConstants';

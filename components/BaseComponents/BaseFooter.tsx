@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaArrowRight } from 'react-icons/fa6'
-import { AmericanCard, MasterCard, VisaCard } from '@/public/svgConstants'
-import logo1 from "@/public/logo1.webp"
+import { VisaCard } from '@/assets/cardSvg'
+import logo1 from "@/assets/logo1.webp"
 import { contactInfo, copyWrite, infoLinks, newsletter, quickLinks } from '@/constants/footerConstants'
 import BaseInput from './BaseInput'
 
@@ -91,11 +91,11 @@ export default function Footer() {
 
               <div className="flex flex-wrap gap-2 justify-center">
                 <VisaCard />
-                <MasterCard />
-                <AmericanCard />
                 <VisaCard />
-                <MasterCard />
-                <AmericanCard />
+                <VisaCard />
+                <VisaCard />
+                <VisaCard />
+                <VisaCard />
               </div>
             </div>
           </div>

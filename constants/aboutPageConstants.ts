@@ -46,5 +46,6 @@ export const aboutConsts = {
     description : "Your trusted destination for premium clothing products and accessories",
     ourStory : "Our story",
     ourStoryDesc : "Our mission is to make premium technology accessible to everyone. We carefully curate our product selection to ensure every item meets our rigorous quality standards.",
-    ourValues : "Our values"
+    ourValues : "Our values",
+    imgAlt : "Logo image"
 }
