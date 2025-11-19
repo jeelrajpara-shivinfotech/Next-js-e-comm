@@ -1,4 +1,4 @@
-import Carousel from "@/components/Carousel";
+import Carousel from "@/components/BaseComponents/BaseCarousel";
 import { benefits, featuredProductsConst } from "@/constants/homePageConstants";
 import { getProducts } from "@/utils/productApi";
 import { RiShoppingBag3Line } from "react-icons/ri";

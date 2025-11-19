@@ -6,6 +6,7 @@ import { FaArrowRight } from 'react-icons/fa6'
 import { AmericanCard, MasterCard, VisaCard } from '@/public/svgConstants'
 import logo1 from "@/public/logo1.webp"
 import { contactInfo, copyWrite, infoLinks, newsletter, quickLinks } from '@/constants/footerConstants'
+import BaseInput from './BaseInput'
 
 export default function Footer() {
   const logos = [logo1, logo1, logo1, logo1, logo1]
@@ -69,15 +70,14 @@ export default function Footer() {
             <div className="font-jost">
               <h3 className="mb-6 text-2xl text-foreground">{newsletter?.title}</h3>
               <p className="mb-6 text-xl text-slate-600">{newsletter?.subtitle}</p>
-              <div className="flex w-full bg-white font-jost">
-                <input
+              <div className="flex w-full">
+                <BaseInput
                   type="email"
                   placeholder={newsletter?.placeholder}
-                  className="flex-1 px-4 py-3 font-jost"
+                  rightElement={
+                    <FaArrowRight className="h-5 w-5 text-gray-600" />
+                  }
                 />
-                <button className="px-4 py-3 rounded-r-md flex items-center justify-center">
-                  <FaArrowRight className="h-5 w-5 text-gray-600" />
-                </button>
               </div>
             </div>
           </div>

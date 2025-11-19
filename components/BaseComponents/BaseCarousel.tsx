@@ -1,10 +1,11 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import carouselImage from "../public/carousel-bg-1.png"
+import carouselImage from "@/public/carousel-bg-1.png"
 import Image from 'next/image'
 import { PiGreaterThan, PiLessThan } from 'react-icons/pi'
 import { slides } from '@/constants/homePageConstants'
+import BaseButton from './BaseButton'
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -29,19 +30,20 @@ export default function Carousel() {
             <p className="text-lg text-gray-700 leading-relaxed pt-5">
               {slide?.description}
             </p>
+            <BaseButton>
             <Link
               href="/shop"
-              className="inline-block bg-white text-gray-900 px-8 py-3 my-4 rounded-full font-semibold hover:shadow-lg transition-shadow"
             >
               {slide?.buttonText}
             </Link>
+            </BaseButton>
           </div>
           <div className="relative h-64 md:h-80 lg:h-96 hidden lg:block md:block">
             <Image
               src={carouselImage}
               alt={slide?.title}
-              height={100}
-              width={100}
+              height={0}
+              width={0}
               className="w-full h-full object-cover"
             />
           </div>
