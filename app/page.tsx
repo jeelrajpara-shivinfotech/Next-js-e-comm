@@ -1,92 +1,68 @@
-import ProductCard from "@/components/ProductCard";
+import Carousel from "@/components/Carousel";
+import { benefits, featuredProductsConst } from "@/constants/homePageConstants";
 import { getProducts } from "@/utils/productApi";
-import Link from "next/link";
-import { BsArrowRight } from "react-icons/bs";
-import homePageImage from "../public/homePageImage.jpeg"
-import Image from "next/image";
-import { GoShield, GoZap } from "react-icons/go";
-import { FaRegStar } from "react-icons/fa6";
-import { featuredProductsConsts, featuredSectionConsts, homePageConsts } from "@/constants/homePageConstants";
+import { RiShoppingBag3Line } from "react-icons/ri";
 
 export default async function Home() {
   const products = await getProducts();
-  const limitedItems = products.slice(0, 4)
+  const limitedItems = products?.slice(0, 4)
   return (
     <div className="min-h-screen">
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance">
-              {homePageConsts.header}
-            </h1>
-            <p className="text-lg text-gray-600 max-w-xl">
-              {homePageConsts.headerDesc}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/shop"
-                className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+      <Carousel />
+      <section className="w-full border-t border-b border-gray-200 bg-white">
+        <div className="">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+            {benefits?.map((benefit) => (
+              <div
+                key={benefit?.id}
+                className="bg-gray-50 border border-gray-300 p-6 transition-colors duration-300 flex items-start space-x-4 py-12"
               >
-                {homePageConsts.shopNow} <BsArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center border border-gray-200 px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition-colors"
-              >
-                {homePageConsts.learnMore}
-              </Link>
+                <div className="">{benefit?.icon}</div>
+                <div className="text-left">
+                  <h3 className="text-lg font-medium text-gray-900 mb-1">
+                    {benefit?.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {benefit?.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex justify-center items-center mb-12">
+          <h2 className="text-4xl text-center font-medium font-jost">{featuredProductsConst?.header}</h2>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {limitedItems?.map((product) => (
+            <div
+              key={product.id}
+              className="group relative "
+            >
+              <div className="relative">
+                <img
+                  src={product?.image}
+                  alt={product?.title}
+                  className="w-full h-80 bg-gray-100 p-4 rounded-2xl border border-gray-200 object-contain"
+                />
+                <div className="flex items-center justify-center gap-2 absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-black text-white px-4 py-2 rounded-lg transition-all duration-300 shadow hover:bg-white hover:text-black cursor-pointer">
+                  <RiShoppingBag3Line />
+                  <button className="cursor-pointer">
+                    <div>{featuredProductsConst?.addToCart}</div>
+                  </button>
+                </div>
+              </div>
+              <div className="py-4">
+                <h3 className="font-jost text-lg">
+                  {product?.title}
+                </h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  {featuredProductsConst?.dollar}{product?.price}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="relative">
-            <Image
-              src={homePageImage}
-              alt="Premium tech products"
-              height={500}
-              width={500}
-              className="w-full h-full rounded-2xl shadow-lg"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <h2 className="text-3xl font-bold text-center mb-12">{featuredSectionConsts.header}</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-card p-8 rounded-xl border border-gray-200">
-            <GoZap className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-bold mb-2">{featuredSectionConsts.card1Header}</h3>
-            <p className="text-gray-600">
-              {featuredSectionConsts.card1Desc}
-            </p>
-          </div>
-          <div className="bg-card p-8 rounded-xl border border-gray-200">
-            <GoShield className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-bold mb-2">{featuredSectionConsts.card2Header}</h3>
-            <p className="text-muted-foreground">
-              {featuredSectionConsts.card2Desc}
-            </p>
-          </div>
-          <div className="bg-card p-8 rounded-xl border border-gray-200">
-            <FaRegStar className="w-12 h-12 text-primary mb-4" />
-            <h3 className="text-xl font-bold mb-2">{featuredSectionConsts.card3Header}</h3>
-            <p className="text-muted-foreground">
-              {featuredSectionConsts.card3Desc}
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex justify-between items-center my-6">
-          <h2 className="text-3xl font-bold">{featuredProductsConsts.header}</h2>
-          <Link
-            href="/shop"
-            className="text-primary hover:text-primary/80 font-semibold flex items-center gap-2"
-          >
-            {featuredProductsConsts.viewAll} <BsArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 ">
-          {limitedItems.map((p) => (
-            <ProductCard key={p.id} product={p} />
           ))}
         </div>
       </section>

@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+:root {
+  --font-jost: 'Jost', sans-serif;
+}
+body{
+  font-family: var(--font-jost);
+}
+.font-jost {
+  font-family: var(--font-jost);
+}

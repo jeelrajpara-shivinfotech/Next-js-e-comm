@@ -1,75 +1,106 @@
 'use client'
 
 import Link from 'next/link'
-import logo from "../public/logo.png"
 import Image from 'next/image'
-import { footerConst, footerLinks } from '@/constants/footerConstants'
-import { FaFacebook, FaInstagram, FaLinkedinIn, FaMapPin } from 'react-icons/fa'
-import { FaPhone , FaTwitter } from 'react-icons/fa6'
-import { IoMail } from 'react-icons/io5'
+import { FaArrowRight } from 'react-icons/fa6'
+import { AmericanCard, MasterCard, VisaCard } from '@/public/svgConstants'
+import logo1 from "@/public/logo1.webp"
+import { contactInfo, copyWrite, infoLinks, newsletter, quickLinks } from '@/constants/footerConstants'
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const logos = [logo1, logo1, logo1, logo1, logo1]
 
   return (
-    <footer className="bg-secondary border-t border-gray-200 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
-          <div className="col-span-1">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 font-bold text-xl text-primary mb-4"
-            >
-              <Image src={logo} alt='logo' height={200} width={150}/>
-            </Link>
-            <p className="text-foreground text-sm leading-relaxed mb-4">
-              {footerConst?.label1}
-            </p>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-foreground text-sm flex-wrap">
-                <IoMail className="w-4 h-4 text-primary" />
-                <span>{footerConst?.email}</span>
+    <footer className="bg-gray-100 mt-16">
+      <div className="w-full bg-gray-100 border-b border-gray-300">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-10 items-center">
+            {logos?.map((logo, i) => (
+              <div key={i} className="flex justify-center opacity-60 hover:opacity-100 transition">
+                <Image
+                  src={logo}
+                  alt={`brand-${i}`}
+                  className="h-14 md:h-20 w-auto object-contain"
+                />
               </div>
-              <div className="flex items-center gap-2 text-foreground text-sm flex-wrap">
-                <FaPhone className="w-4 h-4 text-primary" />
-                <span>{footerConst?.phone}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-gray-300">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 gap-10 sm:gap-16 md:grid-cols-4">
+            <div className="font-jost">
+              <h3 className="mb-5 text-2xl text-foreground">{contactInfo?.title}</h3>
+              <p className="mb-4 text-xl text-slate-600">{contactInfo?.subtitle}</p>
+              <div className="mb-4">
+                <p className="font-medium">{contactInfo?.hotlineLabel}</p>
+                <p className="text-xl text-slate-600">{contactInfo?.hotlineValue}</p>
               </div>
-              <div className="flex items-center gap-2 text-foreground text-sm flex-wrap">
-                <FaMapPin className="w-4 h-4 text-primary" />
-                <span>{footerConst?.address}</span>
+              <div>
+                <p className="font-medium">{contactInfo?.addressLabel}</p>
+                <p className="text-xl text-slate-600">{contactInfo?.addressValue}</p>
               </div>
             </div>
-          </div>
-          {Object.entries(footerLinks ?? {}).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold text-foreground mb-4">{category}</h3>
-              <ul className="space-y-2">
-                {links?.map((link) => (
-                  <li key={link?.label}>
-                    <Link
-                      href={link?.href ?? "#"}
-                      className="text-foreground hover:text-primary text-sm transition-colors duration-200"
-                    >
-                      {link?.label}
+            <div className="font-jost">
+              <h3 className="mb-5 text-2xl text-foreground">{quickLinks?.title}</h3>
+              <ul className="space-y-3">
+                {quickLinks?.links?.map((item, i) => (
+                  <li key={i}>
+                    <Link href="#" className="text-slate-600 hover:text-foreground transition-colors">
+                      {item}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
-        </div>
-        <div className="border-t border-gray-200 my-8"></div>
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-foreground text-sm mb-4 md:mb-0">
-            {footerConst?.reserved} {currentYear} {footerConst?.allRightsReserved}
-          </p>
-          <div className="flex gap-6 flex-wrap cursor-pointer">
-            <FaTwitter/>
-            <FaFacebook/>
-            <FaInstagram/>
-            <FaLinkedinIn/>
+            <div className="font-jost">
+              <h3 className="mb-5 text-2xl text-foreground">{infoLinks?.title}</h3>
+              <ul className="space-y-3">
+                {infoLinks?.links?.map((item, i) => (
+                  <li key={i}>
+                    <Link href="#" className="text-slate-600 hover:text-foreground transition-colors">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="font-jost">
+              <h3 className="mb-6 text-2xl text-foreground">{newsletter?.title}</h3>
+              <p className="mb-6 text-xl text-slate-600">{newsletter?.subtitle}</p>
+              <div className="flex w-full bg-white font-jost">
+                <input
+                  type="email"
+                  placeholder={newsletter?.placeholder}
+                  className="flex-1 px-4 py-3 font-jost"
+                />
+                <button className="px-4 py-3 rounded-r-md flex items-center justify-center">
+                  <FaArrowRight className="h-5 w-5 text-gray-600" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="border-t border-slate-200 bg-gray-100">
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="font-jost text-center md:text-left">
+                {copyWrite}
+              </p>
+
+              <div className="flex flex-wrap gap-2 justify-center">
+                <VisaCard />
+                <MasterCard />
+                <AmericanCard />
+                <VisaCard />
+                <MasterCard />
+                <AmericanCard />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </footer>
   )
