@@ -2,7 +2,6 @@
 import aboutImage from "@/assets/modern-retail-store-interior.jpeg";
 import Image from "next/image";
 import { aboutConsts, faqData } from "../../constants/aboutPageConstants";
-import BaseHeader from "@/components/BaseComponents/BaseHeader";
 import about from "@/assets/about.webp";
 import { benefits } from "@/constants/homePageConstants";
 import { useState } from "react";
@@ -17,13 +16,7 @@ export default function About() {
 
   return (
     <section className="min-h-screen">
-      <BaseHeader
-        title={aboutConsts?.header}
-        homeLabel={aboutConsts?.home}
-        currentLabel={aboutConsts?.header}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-14">
         <div className="relative w-full h-[800px] mb-20">
           <Image
             src={about}
@@ -65,7 +58,7 @@ export default function About() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <Image

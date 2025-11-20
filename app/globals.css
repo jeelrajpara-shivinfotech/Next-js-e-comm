@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
 
 :root {
   --font-jost: 'Jost', sans-serif;
@@ -8,4 +11,20 @@ body{
 }
 .font-jost {
   font-family: var(--font-jost);
+}
+.my-cat-carousel .p-carousel-item {
+  padding-right: 10px;
+}
+@media (min-width: 1024px) {
+  .my-cat-carousel .p-carousel-item {
+    padding-right: 24px;
+  }
+}
+@media (max-width: 575px) {
+  .my-cat-carousel .p-carousel-item {
+    padding-right: 8px;
+  }
+}
+.card-inner > img:hover{
+  opacity: 0.75;
 }

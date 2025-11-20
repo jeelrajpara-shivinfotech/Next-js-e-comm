@@ -23,7 +23,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
       disabled={disabled}
       onClick={onClick}
       className={`
-        rounded-full px-8 py-3 bg-white
+        rounded-full px-8 py-3 bg-white cursor-pointer
         hover:bg-black hover:text-white transition-all
         disabled:opacity-50 disabled:cursor-not-allowed
         ${fullWidth ? "w-full" : ""}

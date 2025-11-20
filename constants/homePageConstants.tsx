@@ -1,26 +1,28 @@
 import { CiDeliveryTruck, CiGift, CiGlobe } from "react-icons/ci";
 import { TfiWallet } from "react-icons/tfi";
+import sliderImage from "@/assets/sliderCardImage1.webp"
+import sliderImage2 from "@/assets/sliderCardImage2.webp"
 export const homePageConsts = {
-    header : "Experience premium products",
-    headerDesc : "Discover our curated collection of high-quality electronics and accessories. Fast shipping, secure payments, and customer satisfaction guaranteed.",
-    shopNow : "Shop now",
-    learnMore : "Learn more",
+  header: "Experience premium products",
+  headerDesc: "Discover our curated collection of high-quality electronics and accessories. Fast shipping, secure payments, and customer satisfaction guaranteed.",
+  shopNow: "Shop now",
+  learnMore: "Learn more",
 }
 
 export const featuredSectionConsts = {
-    header : "Why choose us?",
-    card1Header : 'Fast shipping',
-    card1Desc : "Get your orders delivered within 2-3 business days across the country.",
-    card2Header : "Secure payments",
-    card2Desc : "Bank-level security with Stripe. Your payment information is always safe.",
-    card3Header : "Quality guaranteed",
-    card3Desc : "All products are verified and come with a 30-day satisfaction guarantee.",
+  header: "Why choose us?",
+  card1Header: 'Fast shipping',
+  card1Desc: "Get your orders delivered within 2-3 business days across the country.",
+  card2Header: "Secure payments",
+  card2Desc: "Bank-level security with Stripe. Your payment information is always safe.",
+  card3Header: "Quality guaranteed",
+  card3Desc: "All products are verified and come with a 30-day satisfaction guarantee.",
 }
 
 export const featuredProductsConst = {
-    header : "Featured products",
-    addToCart : "Add to cart",
-    dollar : "$"
+  header: "Featured products",
+  addToCart: "Add to cart",
+  dollar: "$"
 }
 
 export const slides = [
@@ -50,7 +52,7 @@ export const slides = [
   },
 ]
 
-export const benefits= [
+export const benefits = [
   {
     id: 1,
     icon: <CiGlobe className="w-10 h-10" />,
@@ -75,4 +77,34 @@ export const benefits= [
     title: "Surprise Gift",
     subtitle: "Free gift cards & vouchers",
   },
+];
+
+export const categories = [
+  {
+    title: "Men's Fashion",
+    image: sliderImage,
+  },
+  {
+    title: "New Arrivals",
+    image: sliderImage2,
+  },
+  {
+    title: "Top Sales",
+    image: sliderImage,
+  },
+  {
+    title: "Women's Fashion",
+    image: sliderImage2,
+  },
+  {
+    title: "Kid's Fashion",
+    image: sliderImage,
+  },
+];
+
+export const marqueeItems = [
+  { text: "Spring Collections!", outline: false },
+  { text: "Limited Offer Sales!", outline: true },
+  { text: "Hot Deal Products!", outline: false },
+  { text: "Best Selling Items!", outline: true },
 ];

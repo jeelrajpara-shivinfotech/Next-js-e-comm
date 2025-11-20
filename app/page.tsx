@@ -1,11 +1,51 @@
+"use client"
 import Carousel from "@/components/BaseComponents/BaseCarousel";
-import { benefits, featuredProductsConst } from "@/constants/homePageConstants";
+import BaseSkeleton from "@/components/BaseComponents/BaseSkeleton";
+import CategoryCarousel from "@/components/categoryCarousel";
+import Marquee from "@/components/Marque/marquee";
+import { benefits, categories, featuredProductsConst } from "@/constants/homePageConstants";
+import { Products } from "@/types/products";
 import { getProducts } from "@/utils/productApi";
+import { useEffect, useState } from "react";
 import { RiShoppingBag3Line } from "react-icons/ri";
 
-export default async function Home() {
-  const products = await getProducts();
-  const limitedItems = products?.slice(0, 4)
+export default function Home() {
+  const [products, setProducts] = useState<Products[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const data = await getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError('Failed to load products');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+  return (
+    <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[...Array(4)].map((_, i) => (
+          <BaseSkeleton key={i} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+  const limitedItems = products?.slice(0, 4);
+
   return (
     <div className="min-h-screen">
       <Carousel />
@@ -31,7 +71,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <CategoryCarousel categories={categories}/>
+      </section>
+      
+      <section className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
         <div className="flex justify-center items-center mb-12">
           <h2 className="text-4xl text-center font-medium font-jost">{featuredProductsConst?.header}</h2>
         </div>
@@ -65,6 +109,9 @@ export default async function Home() {
             </div>
           ))}
         </div>
+      </section>
+      <section>
+        <Marquee/>
       </section>
     </div>
   );
