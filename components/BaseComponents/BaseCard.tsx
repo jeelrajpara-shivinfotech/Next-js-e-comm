@@ -18,11 +18,14 @@ const BaseCard = ({ product }: Props) => {
   return (
     <div className="group relative cursor-pointer">
       <div className="relative">
-        <img
-          src={product?.image}
-          alt={product?.title}
-          className="w-full h-96 bg-gray-100 p-4 rounded-2xl border border-gray-200 object-contain"
-        />
+        <div className="relative w-full h-96 bg-gray-100 p-4 rounded-2xl border border-gray-200">
+          <Image
+            src={product?.image || hoverImage}
+            alt={product?.title || ""}
+            fill
+            className="object-contain"
+          />
+        </div>
         <Image
           src={hoverImage}
           alt={product?.title ?? ""}

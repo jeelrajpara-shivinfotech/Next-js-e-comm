@@ -2,6 +2,9 @@ import { CiDeliveryTruck, CiGift, CiGlobe } from "react-icons/ci";
 import { TfiWallet } from "react-icons/tfi";
 import sliderImage from "@/assets/sliderCardImage1.webp"
 import sliderImage2 from "@/assets/sliderCardImage2.webp"
+import bannerImage1 from "@/assets/slider-1.webp"
+import bannerImage2 from "@/assets/slider-2.webp"
+
 export const homePageConsts = {
   header: "Experience premium products",
   headerDesc: "Discover our curated collection of high-quality electronics and accessories. Fast shipping, secure payments, and customer satisfaction guaranteed.",
@@ -31,7 +34,7 @@ export const slides = [
     title: 'Summer Style Sensations',
     description: 'Having plain clothing makes you look ordinary. We can assist you in choosing the right products with ShopHub.',
     buttonText: 'Shop Now',
-    image: "../public/carousel-bg-1.png",
+    image: bannerImage1,
     bgGradient: 'from-blue-100 via-cyan-100 to-blue-200',
   },
   {
@@ -39,7 +42,7 @@ export const slides = [
     title: 'Premium Tech Collection',
     description: 'Discover the latest gadgets and accessories designed for modern living. Elevate your lifestyle today.',
     buttonText: 'Explore Now',
-    image: '/carousel-tech.jpg',
+    image: bannerImage2,
     bgGradient: 'from-purple-100 via-pink-100 to-purple-200',
   },
   {
@@ -47,7 +50,7 @@ export const slides = [
     title: 'Exclusive Offers',
     description: 'Limited time deals on your favorite products. Get up to 40% off on selected items. Hurry before it ends!',
     buttonText: 'Shop Deals',
-    image: '/carousel-deals.jpg',
+    image: bannerImage1,
     bgGradient: 'from-orange-100 via-red-100 to-orange-200',
   },
 ]

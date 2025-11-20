@@ -1,72 +1,81 @@
-'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import carouselImage from "@/assets/slider-1.webp"
-import Image from 'next/image'
-import { PiGreaterThan, PiLessThan } from 'react-icons/pi'
-import { slides } from '@/constants/homePageConstants'
-import BaseButton from './BaseButton'
+"use client";
 
-export default function Carousel() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % (slides?.length ?? 1))
-  }
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + (slides?.length ?? 1)) % (slides?.length ?? 1))
-  }
-  const slide = slides?.[currentSlide]
-  return (
-    <section
-      className="relative w-full h-[90vh] bg-center bg-cover bg-no-repeat transition-colors duration-1000 overflow-hidden"
-      style={{
-        backgroundImage: `url(${carouselImage.src})`,
-      }}
-    >
-      <div className="container mx-auto h-full flex items-center px-16 sm:px-6 lg:px-16 relative z-10 space-y-4 ">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 w-full items-center px-10">
-          <div className="space-y-6 max-w-lg">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 mt-4">
-              {slide?.title}
-            </h1>
-            <p className="text-lg text-gray-700 leading-relaxed font-medium">
-              {slide?.description}
-            </p>
-            <BaseButton>
-              <Link href="/shop">
-                {slide?.buttonText}
-              </Link>
-            </BaseButton>
+import { Carousel } from "primereact/carousel";
+import Image from "next/image";
+import Link from "next/link";
+import { slides } from "@/constants/homePageConstants";
+import BaseButton from "./BaseButton";
+
+export default function HomeCarousel() {
+  const responsiveOptions = [
+    {
+      breakpoint: '1199px',
+      numVisible: 1,
+      numScroll: 1
+    },
+    {
+      breakpoint: '991px',
+      numVisible: 1,
+      numScroll: 1
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 1,
+      numScroll: 1
+    },
+    {
+      breakpoint: '575px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+
+  const slideTemplate = (slide: any) => {
+    return (
+      <section className="relative w-full h-[90vh] md:h-[90vh]">
+        <Image
+          src={slide.image}
+          alt={slide.title}
+          fill
+          className="object-cover object-center hidden md:block"
+          priority
+        />
+        <div
+          className={`absolute inset-0 block md:hidden bg-gradient-to-r ${slide.bgGradient}`}
+        />
+        <div className="relative container mx-auto h-full flex items-center px-4 sm:px-6 lg:px-16 z-10">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 w-full items-center">
+            <div className="space-y-4 md:space-y-6 max-w-lg drop-shadow-md text-center md:text-left px-4 md:px-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
+                {slide.title}
+              </h1>
+              <p className="text-base sm:text-lg leading-relaxed font-medium">
+                {slide.description}
+              </p>
+              <div className="flex justify-center md:justify-start">
+                <BaseButton>
+                  <Link href="/shop">{slide.buttonText}</Link>
+                </BaseButton>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-900 p-3 rounded-full transition-colors cursor-pointer"
-      >
-        <PiLessThan className="w-6 h-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-900 p-3 rounded-full transition-colors cursor-pointer"
-      >
-        <PiGreaterThan className="w-6 h-6" />
-      </button>
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        {slides?.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${index === currentSlide
-                ? 'bg-gray-900 w-8'
-                : 'bg-gray-400 hover:bg-gray-600'
-              }`}
-          />
-        ))}
-      </div>
-    </section>
-  )
+      </section>
+    );
+  };
+
+  return (
+    <div className="home-carousel fullwidth-carousel">
+      <Carousel
+        value={slides}
+        itemTemplate={slideTemplate}
+        numVisible={1}
+        numScroll={1}
+        circular
+        responsiveOptions={responsiveOptions}
+        showIndicators={false}
+        showNavigators={true}
+      />
+    </div>
+  );
 }

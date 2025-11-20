@@ -1,5 +1,5 @@
 "use client"
-import Carousel from "@/components/BaseComponents/BaseCarousel";
+import HomeCarousel from "@/components/BaseComponents/BaseCarousel";
 import BaseSkeleton from "@/components/BaseComponents/BaseSkeleton";
 import CategoryCarousel from "@/components/categoryCarousel";
 import Marquee from "@/components/Marque/marquee";
@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Carousel />
+      <HomeCarousel />
       <section className="w-full border-t border-b border-gray-200 bg-white">
         <div className="">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">

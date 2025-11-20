@@ -6,6 +6,7 @@ import { getProducts } from "@/utils/productApi";
 import BaseCard from "@/components/BaseComponents/BaseCard";
 import { Products } from "@/types/products";
 import BaseSelect from "@/components/BaseComponents/BaseSelect";
+import BasePagination from "@/components/BaseComponents/BasePagination";
 
 export default function Shop() {
   const [products, setProducts] = useState<Products[]>([]);
@@ -22,52 +23,37 @@ export default function Shop() {
       const data = await getProducts();
       setProducts(data);
       setFiltered(data);
-
-      const uniqueCats = Array.from(new Set(data.map((p) => p.category)));
+      
+      const uniqueCats = Array.from(new Set(data?.map((p) => p?.category)?.filter(Boolean) ?? []));
       setCategories(uniqueCats);
     })();
   }, []);
-  const handleCategoryChange = (category: string) => {
-    setPage(1);
-
-    let updated;
-    if (selectedCategories.includes(category)) {
-      updated = selectedCategories.filter((c) => c !== category);
-    } else {
-      updated = [...selectedCategories, category];
+  const handleSort = (value: string, sortedData?: Products[]) => {
+    setSortOption(value);
+    if (sortedData) {
+      setFiltered(sortedData);
     }
+  };
+  const handleCategoryChange = (categories: string[]) => {
+    setPage(1);
+    setSelectedCategories(categories);
 
-    setSelectedCategories(updated);
-
-    if (updated.length === 0) {
+    if (categories?.length === 0) {
       setFiltered(products);
     } else {
-      setFiltered(products.filter((p) => updated.includes(p.category)));
+      setFiltered(products?.filter((p) => categories?.includes(p?.category ?? '')) ?? []);
     }
   };
-  const handleSort = (value: string) => {
-    setSortOption(value);
-    const sorted = [...filtered];
-
-    switch (value) {
-      case "a-z":
-        sorted.sort((a, b) => (a.title ?? "").localeCompare(b.title ?? ""));
-        break;
-      case "z-a":
-        sorted.sort((a, b) => (b.title ?? "").localeCompare(a.title ?? ""));
-        break;
-      case "price-low-high":
-        sorted.sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
-        break;
-      case "price-high-low":
-        sorted.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
-        break;
+  const handleGenericChange = (value: string | string[]) => {
+    if (Array.isArray(value)) {
+      setSelectedCategories(value);
+    } else {
+      setSortOption(value);
     }
-    setFiltered(sorted);
   };
   const start = (page - 1) * itemsPerPage;
-  const paginatedData = filtered.slice(start, start + itemsPerPage);
-  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const paginatedData = filtered?.slice(start, start + itemsPerPage) ?? [];
+  const totalPages = Math.ceil((filtered?.length ?? 0) / itemsPerPage);
 
   return (
     <section>
@@ -78,7 +64,10 @@ export default function Shop() {
             type="select"
             options={selectConst}
             selected={sortOption}
-            onChange={handleSort}
+            onChange={handleGenericChange}
+            onSortChange={handleSort}
+            data={filtered}
+            sortKey="title"
           />
         </div>
         <div className="mt-6 flex gap-6 flex-wrap">
@@ -86,56 +75,28 @@ export default function Shop() {
             <BaseSelect
               title={shopCostants?.category}
               type="checkbox"
-              options={categories?.map((c) => ({ label: c, value: c }))}
+              options={categories?.map((c) => ({ label: c, value: c })) ?? []}
               selected={selectedCategories}
-              onChange={handleCategoryChange}
+              onChange={handleGenericChange}
+              onCategoryChange={handleCategoryChange}
             />
           </aside>
           <div className="md:flex-1 lg:flex-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedData.map((product) => (
+              {paginatedData?.map((product) => (
                 <BaseCard key={product?.id} product={product} />
               ))}
               {paginatedData?.length === 0 && (
                 <p className="text-center col-span-full">{shopCostants?.noProducts}</p>
               )}
             </div>
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-3 mt-8 select-none">
-                <button
-                  disabled={page === 1}
-                  onClick={() => setPage((prev) => prev - 1)}
-                  className={`text-sm ${page === 1
-                    ? "opacity-40 cursor-not-allowed hidden"
-                    : "hover:underline"
-                    }`}
-                >
-                  {shopCostants?.previousPage}
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => setPage(p)}
-                    className={`cursor-pointer px-2 ${p === page
-                      ? "font-semibold underline"
-                      : "hover:underline"
-                      }`}
-                  >
-                    {p}
-                  </button>
-                ))}
-                <button
-                  disabled={page === totalPages}
-                  onClick={() => setPage((prev) => prev + 1)}
-                  className={` ${page === totalPages
-                    ? "opacity-40 cursor-not-allowed hidden"
-                    : "hover:underline"
-                    }`}
-                >
-                  {shopCostants?.nextPage}
-                </button>
-              </div>
-            )}
+            <BasePagination
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={setPage}
+              previousText={shopCostants?.previousPage}
+              nextText={shopCostants?.nextPage}
+            />
           </div>
         </div>
       </div>
