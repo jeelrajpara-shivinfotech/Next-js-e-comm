@@ -1,12 +1,43 @@
 "use client"
 import Carousel from "@/components/BaseComponents/BaseCarousel";
 import { benefits, featuredProductsConst } from "@/constants/homePageConstants";
+import { Products } from "@/types/products";
 import { getProducts } from "@/utils/productApi";
+import { useEffect, useState } from "react";
 import { RiShoppingBag3Line } from "react-icons/ri";
 
-export default async function Home() {
-  const products = await getProducts();
-  const limitedItems = products?.slice(0, 4)
+export default function Home() {
+  const [products, setProducts] = useState<Products[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const data = await getProducts();
+        setProducts(data);
+      } catch (err) {
+        setError('Failed to load products');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const limitedItems = products?.slice(0, 4);
+
   return (
     <div className="min-h-screen">
       <Carousel />
