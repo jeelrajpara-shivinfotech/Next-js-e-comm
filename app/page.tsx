@@ -1,3 +1,4 @@
+"use client"
 import Carousel from "@/components/BaseComponents/BaseCarousel";
 import { benefits, featuredProductsConst } from "@/constants/homePageConstants";
 import { getProducts } from "@/utils/productApi";
