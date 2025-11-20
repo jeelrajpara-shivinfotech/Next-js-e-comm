@@ -6,9 +6,9 @@ import Image from 'next/image';
 import logo from "@/assets/logo.webp"
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
-import { navbarConst, navLinks } from '@/constants/navbarConstants';
+import { navLinks } from '@/constants/navbarConstants';
 import CartSidebar from "@/components/CartSidebar";
-import { RiShoppingBag3Line } from 'react-icons/ri';
+import BaseCartIcon from './BaseCartIcon';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-gray-50 border-b border-gray-100 shadow-sm ">
+      <nav className="sticky top-0 z-50 bg-gray-50 border-b border-gray-100 shadow-sm">
         <div className="container px-16 sm:px-6 lg:px-16 py-2">
           <div className="flex justify-between items-center h-16">
             <Link 
@@ -35,43 +35,55 @@ export default function Navbar() {
                   {link?.label}
                 </Link>
               ))}
-              <button
-                onClick={() => setCartOpen(true)}
-                className="cursor-pointer"
-              >
-                <RiShoppingBag3Line className='h-6 w-6'/>
-              </button>
+              <BaseCartIcon onClick={() => setCartOpen(true)} />
             </div>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-foreground hover:text-primary transition-colors"
-            >
-              {isOpen ? <IoCloseSharp className="w-6 h-6" /> : <FaBarsStaggered className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center gap-4 md:hidden">
+              <button
+                onClick={() => setIsOpen(true)}
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <FaBarsStaggered className="w-6 h-6" />
+              </button>
+              <BaseCartIcon onClick={() => setCartOpen(true)} />
+            </div>
           </div>
-          {isOpen && (
-            <div className="md:hidden pb-4 space-y-2 border-t border-border">
-              {navLinks?.map((link) => (
-                <Link
-                  key={link?.href}
-                  href={link?.href ?? "#"}
-                  className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link?.label}
-                </Link>
-              ))}
-              <button
-                onClick={() => setCartOpen(true)}
-                className="w-full text-left px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
-              >
-                {navbarConst?.cart}
-              </button>
-            </div>
-          )}
         </div>
       </nav>
+      <div
+        className={`fixed inset-0 z-50 transition-opacity ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <div
+          className="absolute inset-0 bg-black/40"
+          onClick={() => setIsOpen(false)}
+        />
+        <div
+          className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg border-r transition-transform duration-300
+            ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          `}
+        >
+          <div className="flex justify-between items-center p-4 border-b">
+            <span className="text-lg font-semibold">Menu</span>
+            <button onClick={() => setIsOpen(false)}>
+              <IoCloseSharp className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex flex-col py-4">
+            {navLinks?.map((link) => (
+              <Link
+                key={link?.href}
+                href={link?.href ?? "#"}
+                className="px-6 py-3 text-foreground hover:bg-gray-100 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {link?.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
       <CartSidebar isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </>
-  )
+  );
 }

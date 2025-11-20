@@ -28,3 +28,18 @@ body{
 .card-inner > img:hover{
   opacity: 0.75;
 }
+
+.home-carousel .p-carousel-prev {
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  color: black;
+}
+
+.home-carousel .p-carousel-next {
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  background-color: white;
+  color: black;
+}
