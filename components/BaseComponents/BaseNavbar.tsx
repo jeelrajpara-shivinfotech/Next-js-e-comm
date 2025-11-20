@@ -17,13 +17,13 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-gray-50 border-b border-gray-100 shadow-sm ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="container px-16 sm:px-6 lg:px-16 py-2">
           <div className="flex justify-between items-center h-16">
             <Link 
               href="/" 
               className="flex items-center gap-2 font-bold text-2xl text-primary"
             >
-              <Image src={logo} alt="logo" height={150} width={150} />
+              <Image src={logo} alt="logo" height={0} width={0} />
             </Link>
             <div className="hidden md:flex items-center gap-8">
               {navLinks?.map((link) => (
