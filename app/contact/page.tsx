@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import BaseHeader from '@/components/BaseComponents/BaseHeader';
 import BaseButton from '@/components/BaseComponents/BaseButton';
 import BaseForm from '@/components/BaseComponents/BaseForm';
 import { contactConst, contactDetailsConst, getContactFormFields } from '@/constants/contactConstants';
@@ -36,11 +35,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen">
-      <BaseHeader
-        title={contactConst?.title}
-        currentLabel={contactConst?.title}
-        homeLabel={contactConst?.homeLable}
-      />
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
