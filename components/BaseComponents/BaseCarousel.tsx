@@ -43,8 +43,8 @@ export default function HomeCarousel() {
         <div
           className={`absolute inset-0 block md:hidden bg-linear-to-r ${slide.bgGradient}`}
         />
-        <div className="relative container mx-auto h-full flex items-center px-4 sm:px-6 lg:px-16 z-10">
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 w-full items-center">
+        <div className="relative container mx-auto h-full flex items-center justify-center px-4 sm:px-6 lg:px-16 z-10">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-center lg:w-full">
             <div className="space-y-4 md:space-y-6 max-w-lg drop-shadow-md text-center md:text-left px-4 md:px-0">
 
               <motion.h1
@@ -74,7 +74,7 @@ export default function HomeCarousel() {
                 viewport={{ once: true }}
                 className="flex justify-center md:justify-start"
               >
-                <BaseButton>
+                <BaseButton className="bg-white hover:bg-black hover:text-white">
                   <Link href="/shop">{slide.buttonText}</Link>
                 </BaseButton>
               </motion.div>

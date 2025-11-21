@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-gray-50 border-b border-gray-100 shadow-sm">
-        <div className="container mx-auto md:px-10 sm:px-2 lg:px-16 py-2">
+        <div className="container mx-auto md:px-10 px-5 lg:px-16 py-2">
           <div className="flex justify-between items-center h-16">
             <Link 
               href="/" 
@@ -50,7 +50,7 @@ export default function Navbar() {
         </div>
       </nav>
       <div
-        className={`fixed inset-0 z-50 transition-opacity ${
+        className={`fixed inset-0 z-100 transition-opacity ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -59,11 +59,11 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)}
         />
         <div
-          className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg border-r transition-transform duration-300
+          className={`fixed top-0 left-0 h-full w-full scale-z-100 bg-white shadow-lg border-r transition-transform duration-300
             ${isOpen ? "translate-x-0" : "-translate-x-full"}
           `}
         >
-          <div className="flex justify-between items-center p-4 border-b">
+          <div className="flex justify-between items-center p-4 border-b border-gray-200">
             <span className="text-lg font-semibold">Menu</span>
             <button onClick={() => setIsOpen(false)}>
               <IoCloseSharp className="w-6 h-6" />
