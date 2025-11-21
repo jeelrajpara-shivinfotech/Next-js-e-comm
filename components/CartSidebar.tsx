@@ -35,19 +35,19 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
     return (
         <>
             <div
-                className={`fixed inset-0 bg-black/40 z-40 transition-opacity ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                className={`fixed inset-0 bg-black/40 scale-z-100 transition-opacity ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={onClose}
             />
             <div
-                className={`fixed top-0 right-0 w-[380px] h-full bg-white shadow-xl z-50 transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 lg:w-[380px] md:w-[400px] w-full z-100 h-full bg-white shadow-x  transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 <div className="flex justify-between items-center p-4 border-b border-gray-200">
                     <h2 className="text-lg font-semibold">{cartConst.shoppingCart}</h2>
-                    <button onClick={onClose} className="cursor-pointer">
+                    <BaseButton onClick={onClose} className="cursor-pointer">
                         <IoCloseSharp className="w-6 h-6" />
-                    </button>
+                    </BaseButton>
                 </div>
                 <div className="flex flex-col h-[calc(100%-64px)]">
                     <div className="flex-1 overflow-y-auto p-4">
@@ -102,7 +102,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                             <span>{cartConst.dollar}{subtotal.toFixed(2)}</span>
                         </div>
 
-                        <BaseButton variant="black" onClick={handleCheckout} className="mt-4 w-full bg-black text-white py-3 rounded-lg cursor-pointer">
+                        <BaseButton onClick={handleCheckout} className="mt-4 w-full bg-black text-white py-3 rounded-lg cursor-pointer">
                             {cartConst.checkout}
                         </BaseButton>
                     </div>

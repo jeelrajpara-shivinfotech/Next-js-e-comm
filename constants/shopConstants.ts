@@ -5,7 +5,10 @@ export const shopCostants = {
     previousPage: "Prev",
     noProducts: "No products found.",
     category: "Categories",
-    sortBy : "Sort by"
+    sortBy : "Sort by",
+    filterAndSort : "Filter and sort",
+    apply : "Apply",
+    filter : "Filters"
 }
 
 export const selectConst = [

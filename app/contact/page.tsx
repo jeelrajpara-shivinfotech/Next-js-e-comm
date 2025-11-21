@@ -35,7 +35,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen">
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="container mx-auto px-5 sm:px-6 lg:px-16 py-20">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <h2 className="text-4xl font-medium mb-10 font-jost">
@@ -56,7 +56,7 @@ export default function Contact() {
             ) : (
               <BaseForm fields={fields} onSubmit={handleSubmit}>
                 <div className="text-center mt-4">
-                  <BaseButton type="submit" className="cursor-pointer border">
+                  <BaseButton type="submit" className="cursor-pointer bg-white hover:bg-black hover:text-white border">
                     Send Now
                   </BaseButton>
                 </div>

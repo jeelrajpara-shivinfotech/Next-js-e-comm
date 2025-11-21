@@ -12,33 +12,17 @@ body{
 .font-jost {
   font-family: var(--font-jost);
 }
-.my-cat-carousel .p-carousel-item {
-  padding-right: 10px;
-}
-@media (min-width: 1024px) {
-  .my-cat-carousel .p-carousel-item {
-    padding-right: 24px;
-  }
-}
-@media (max-width: 575px) {
-  .my-cat-carousel .p-carousel-item {
-    padding-right: 8px;
-  }
-}
-.card-inner > img:hover{
-  opacity: 0.75;
-}
 
 .home-carousel .p-carousel-prev {
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   background-color: white;
   color: black;
 }
 
 .home-carousel .p-carousel-next {
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   right: 0;
   background-color: white;
   color: black;

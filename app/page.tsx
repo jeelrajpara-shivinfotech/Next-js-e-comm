@@ -72,11 +72,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="container mx-auto px-5  lg:px-8 py-16">
         <CategoryCarousel categories={categories}/>
       </section>
 
-      <section className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
+      <section className="container mx-auto px-5 lg:px-16 py-16">
         <div className="flex justify-center items-center mb-12">
           <motion.h2 initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}

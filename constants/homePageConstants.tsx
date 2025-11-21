@@ -25,7 +25,8 @@ export const featuredSectionConsts = {
 export const featuredProductsConst = {
   header: "Featured products",
   addToCart: "Add to cart",
-  dollar: "$"
+  dollar: "$",
+  remove : "Remove from cart"
 }
 
 export const slides = [

@@ -6,6 +6,7 @@ import about from "@/assets/about.webp";
 import { benefits } from "@/constants/homePageConstants";
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { motion } from "framer-motion"
 
 export default function About() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -16,8 +17,8 @@ export default function About() {
 
   return (
     <section className="min-h-screen">
-      <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-14">
-        <div className="relative w-full h-[800px] mb-20">
+      <div className="container mx-auto px-5 lg:px-16 py-14">
+        <div className="relative w-full aspect-video mb-20">
           <Image
             src={about}
             alt={aboutConsts?.imgAlt}
@@ -25,17 +26,26 @@ export default function About() {
             className="rounded-2xl object-cover"
           />
         </div>
-
         <div className="grid md:grid-cols-2 gap-10 pb-24">
-          <div>
+          <motion.div
+            initial={{ x: -30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <p className="text-xl mb-2 font-medium">{aboutConsts?.title}</p>
             <h2 className="font-semibold leading-normal text-4xl">
               {aboutConsts?.titleDesc}
             </h2>
-          </div>
-          <div className="leading-relaxed text-xl font-medium">
+          </motion.div>
+          <motion.div
+            initial={{ x: 30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="leading-relaxed text-xl font-medium">
             {aboutConsts?.para}
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -58,7 +68,7 @@ export default function About() {
         ))}
       </div>
 
-      <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
+      <div className="container mx-auto px-5 lg:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <Image
