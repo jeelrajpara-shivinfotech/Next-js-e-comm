@@ -69,13 +69,13 @@ export default function Shop() {
   return (
     <section className="container mx-auto px-5 lg:px-16 py-16">
       <div className="md:hidden flex mb-4">
-        <button
+        <BaseButton
           onClick={() => setOpenFilter(true)}
           className="px-4 py-2 bg-gray-200 rounded-lg flex gap-2 items-center"
         >
           <LuListFilter className="h-4 w-4" />
           {shopCostants?.filterAndSort}
-        </button>
+        </BaseButton>
       </div>
       <div
         className={`fixed inset-0 bg-black/40 transition-opacity z-40 md:hidden ${
