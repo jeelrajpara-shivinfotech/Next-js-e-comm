@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
+import BaseButton from "./BaseComponents/BaseButton";
 
 interface CartSidebarProps {
     isOpen?: boolean;
@@ -18,6 +19,19 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         selectCartSubtotal(state)
     );
     const dispatch = useDispatch();
+    const handleCheckout = async () => {
+        const res = await fetch("/api/create-payment-intent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: cart }),
+        });
+
+        const data = await res.json();
+        if (data.url) {
+            window.location.href = data.url;
+        }
+    };
+
     return (
         <>
             <div
@@ -88,9 +102,9 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                             <span>{cartConst.dollar}{subtotal.toFixed(2)}</span>
                         </div>
 
-                        <button className="mt-4 w-full bg-black text-white py-3 rounded-lg">
+                        <BaseButton variant="black" onClick={handleCheckout} className="mt-4 w-full bg-black text-white py-3 rounded-lg cursor-pointer">
                             {cartConst.checkout}
-                        </button>
+                        </BaseButton>
                     </div>
                 </div>
             </div>

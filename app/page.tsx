@@ -1,4 +1,5 @@
 "use client"
+import BaseCard from "@/components/BaseComponents/BaseCard";
 import HomeCarousel from "@/components/BaseComponents/BaseCarousel";
 import BaseSkeleton from "@/components/BaseComponents/BaseSkeleton";
 import CategoryCarousel from "@/components/categoryCarousel";
@@ -7,7 +8,7 @@ import { benefits, categories, featuredProductsConst } from "@/constants/homePag
 import { Products } from "@/types/products";
 import { getProducts } from "@/utils/productApi";
 import { useEffect, useState } from "react";
-import { RiShoppingBag3Line } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [products, setProducts] = useState<Products[]>([]);
@@ -32,16 +33,16 @@ export default function Home() {
   }, []);
 
   if (loading) {
-  return (
-    <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[...Array(4)].map((_, i) => (
-          <BaseSkeleton key={i} />
-        ))}
+    return (
+      <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <BaseSkeleton key={i} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 
   const limitedItems = products?.slice(0, 4);
@@ -74,44 +75,22 @@ export default function Home() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <CategoryCarousel categories={categories}/>
       </section>
-      
+
       <section className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
         <div className="flex justify-center items-center mb-12">
-          <h2 className="text-4xl text-center font-medium font-jost">{featuredProductsConst?.header}</h2>
+          <motion.h2 initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }} className="text-4xl text-center font-medium font-jost">{featuredProductsConst?.header}</motion.h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {limitedItems?.map((product) => (
-            <div
-              key={product.id}
-              className="group relative "
-            >
-              <div className="relative">
-                <img
-                  src={product?.image}
-                  alt={product?.title}
-                  className="w-full h-80 bg-gray-100 p-4 rounded-2xl border border-gray-200 object-contain"
-                />
-                <div className="flex items-center justify-center gap-2 absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-black text-white px-4 py-2 rounded-lg transition-all duration-300 shadow hover:bg-white hover:text-black cursor-pointer">
-                  <RiShoppingBag3Line />
-                  <button className="cursor-pointer">
-                    <div>{featuredProductsConst?.addToCart}</div>
-                  </button>
-                </div>
-              </div>
-              <div className="py-4">
-                <h3 className="font-jost text-lg">
-                  {product?.title}
-                </h3>
-                <p className="text-sm text-gray-500 mt-1">
-                  {featuredProductsConst?.dollar}{product?.price}
-                </p>
-              </div>
-            </div>
+            <BaseCard key={product.id} product={product} />
           ))}
         </div>
       </section>
       <section>
-        <Marquee/>
+        <Marquee />
       </section>
     </div>
   );

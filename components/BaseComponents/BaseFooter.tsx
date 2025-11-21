@@ -29,7 +29,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-300">
-        <div className="container px-16 sm:px-6 lg:px-16 py-16">
+        <div className="container mx-auto px-16 sm:px-6 lg:px-16 py-16">
           <div className="grid grid-cols-1 gap-10 sm:gap-16 md:grid-cols-4">
             <div className="font-jost">
               <h3 className="mb-5 text-2xl text-foreground">{contactInfo?.title}</h3>

@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-gray-50 border-b border-gray-100 shadow-sm">
-        <div className="container px-16 sm:px-6 lg:px-16 py-2">
+        <div className="container mx-auto md:px-10 sm:px-2 lg:px-16 py-2">
           <div className="flex justify-between items-center h-16">
             <Link 
               href="/" 
