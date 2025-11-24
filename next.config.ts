@@ -1,10 +1,25 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: { 
+    turbo: false,
+  },
   images: {
-    domains: ['fakestoreapi.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+      },
+    ],
   },
 };
 
-export default nextConfig;
+module.exports = withPWA(nextConfig);
