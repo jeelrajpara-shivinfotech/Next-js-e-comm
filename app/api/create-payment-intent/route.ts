@@ -23,8 +23,8 @@ export async function POST(req: Request) {
         },
         quantity: item.quantity,
       })),
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/?status=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/?status=cancel`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment-success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment-cancel`,
     });
 
     return NextResponse.json({ url: session.url });

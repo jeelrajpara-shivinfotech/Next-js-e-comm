@@ -49,7 +49,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                         <IoCloseSharp className="w-6 h-6" />
                     </BaseButton>
                 </div>
-                <div className="flex flex-col h-[calc(100%-64px)]">
+                <div className="flex flex-col h-[calc(100%-64px)] py-4">
                     <div className="flex-1 overflow-y-auto p-4">
                         {cart.length === 0 ? (
                             <div>
@@ -102,7 +102,11 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                             <span>{cartConst.dollar}{subtotal.toFixed(2)}</span>
                         </div>
 
-                        <BaseButton onClick={handleCheckout} className="mt-4 w-full bg-black text-white py-3 rounded-lg cursor-pointer">
+                        <BaseButton
+                            onClick={cart.length === 0 ? undefined : handleCheckout}
+                            disabled={cart.length === 0}
+                            className={`mt-4 w-full bg-black text-white py-3 rounded-lg ${cart.length === 0 ? "cursor-not-allowed" : "cursor-pointer"}`}
+                        >
                             {cartConst.checkout}
                         </BaseButton>
                     </div>

@@ -83,11 +83,14 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }} className="text-4xl text-center font-medium font-jost">{featuredProductsConst?.header}</motion.h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div initial={{ opacity: 0}}
+            whileInView={{ opacity: 1}}
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {limitedItems?.map((product) => (
             <BaseCard key={product.id} product={product} />
           ))}
-        </div>
+        </motion.div>
       </section>
       <section>
         <Marquee />

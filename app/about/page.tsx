@@ -7,6 +7,7 @@ import { benefits } from "@/constants/homePageConstants";
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { motion } from "framer-motion"
+import AboutSlider from "@/components/AboutSlider";
 
 export default function About() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -70,7 +71,12 @@ export default function About() {
 
       <div className="container mx-auto px-5 lg:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <Image
               src={aboutImage}
               height={0}
@@ -78,11 +84,23 @@ export default function About() {
               className="w-full rounded-2xl shadow-lg"
               alt={aboutConsts?.imgAlt}
             />
-          </div>
+          </motion.div>
           <div className="space-y-8">
-            <h2 className="text-xl font-medium">{aboutConsts?.faq}</h2>
-            <p className="text-4xl font-semibold">{aboutConsts?.faqDesc}</p>
-            <div className="space-y-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }} className="text-xl font-medium">{aboutConsts?.faq}</motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true }} className="text-4xl font-semibold">{aboutConsts?.faqDesc}</motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true }} className="space-y-4">
               {faqData?.map((item, index) => (
                 <div
                   key={index}
@@ -105,9 +123,10 @@ export default function About() {
                   )}
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
+        <AboutSlider />
       </div>
     </section>
   );

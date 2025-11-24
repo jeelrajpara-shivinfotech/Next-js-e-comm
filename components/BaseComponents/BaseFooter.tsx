@@ -6,9 +6,10 @@ import BaseInput from "./BaseInput";
 import { contactInfo, quickLinks, infoLinks, newsletter, copyWrite } from "@/constants/footerConstants";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import logo1 from "@/assets/logo1.webp"
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { AmericanExpress, DinnersClub, Discover, Mastercard, PayPal, VisaCard } from "@/assets/cardSvg";
 import BaseButton from "./BaseButton";
+import { Carousel } from "primereact/carousel";
 
 const Footer: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -18,6 +19,38 @@ const Footer: React.FC = () => {
   };
 
   const logos = [logo1, logo1, logo1, logo1, logo1]
+  const LogoCard = ({ src }: { src: StaticImageData }) => (
+    <div className="flex justify-center opacity-60 hover:opacity-100 transition">
+      <Image
+        src={src}
+        alt="brand-logo"
+        className="h-14 md:h-20 w-auto object-contain"
+      />
+    </div>
+  );
+
+  const itemTemplate = (item: StaticImageData) => (
+    <div className="p-3">
+      <LogoCard src={item} />
+    </div>
+  );
+  const responsiveOptions = [
+    {
+      breakpoint: "1024px",
+      numVisible: 4,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "768px",
+      numVisible: 3,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "480px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+  ];
   const sections = [
     {
       title: contactInfo.title,
@@ -90,8 +123,8 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-100 mt-16">
       <div className="w-full bg-gray-100 border-b border-gray-300">
         <div className="max-w-7xl mx-auto px-4 py-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-10 items-center">
-            {logos?.map((logo, i) => (
+          <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-10 items-center">
+            {logos.map((logo, i) => (
               <div key={i} className="flex justify-center opacity-60 hover:opacity-100 transition">
                 <Image
                   src={logo}
@@ -100,6 +133,27 @@ const Footer: React.FC = () => {
                 />
               </div>
             ))}
+          </div>
+          <div className="md:hidden mt-6">
+            <Carousel
+              value={logos}
+              itemTemplate={(logo) => (
+                <div className="flex justify-center p-3 opacity-60 hover:opacity-100 transition">
+                  <Image
+                    src={logo}
+                    alt="brand-logo"
+                    className="h-14 w-auto object-contain"
+                  />
+                </div>
+              )}
+              numVisible={2.2}
+              numScroll={1}
+              responsiveOptions={responsiveOptions}
+              showIndicators={false}
+              showNavigators={false}
+              circular
+              autoplayInterval={2500}
+            />
           </div>
         </div>
       </div>
@@ -135,23 +189,23 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-       <div className="border-t border-slate-200 bg-gray-100">
-          <div className="container mx-auto px-16 py-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="font-jost text-center md:text-left">
-                {copyWrite}
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center">
-                <VisaCard />
-                <Mastercard />
-                <PayPal />
-                <AmericanExpress />
-                <Discover />
-                <DinnersClub />
-              </div>
+      <div className="border-t border-slate-200 bg-gray-100">
+        <div className="container mx-auto px-16 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="font-jost text-center md:text-left">
+              {copyWrite}
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              <VisaCard />
+              <Mastercard />
+              <PayPal />
+              <AmericanExpress />
+              <Discover />
+              <DinnersClub />
             </div>
           </div>
         </div>
+      </div>
     </footer>
   );
 };

@@ -23,7 +23,9 @@ export const aboutConsts = {
     home : "Home",
     title : "Welcome To Our Online Store",
     titleDesc : "Discover Our Journey Redefining Online Shopping.",
-    para : "At Foesta, we're passionate about bringing you the latest trends and timeless classics in fashion. Our journey began with a vision to redefine the online shopping experience, offering a curated selection of high-quality clothing, accessories, and lifestyle products that reflect your unique style. What sets us apart is our dedication to providing exceptional customer service and a seamless shopping experience from start to finish."
+    para : "At Foesta, we're passionate about bringing you the latest trends and timeless classics in fashion. Our journey began with a vision to redefine the online shopping experience, offering a curated selection of high-quality clothing, accessories, and lifestyle products that reflect your unique style. What sets us apart is our dedication to providing exceptional customer service and a seamless shopping experience from start to finish.",
+    shopByHeader : "@Shop By Instagram",
+    shopByDesc : "Follow the most popular trends and get exclusive items."
 }
 
 export const faqData = [
@@ -48,3 +50,4 @@ export const faqData = [
       "Your concerns are answered by experts so you can shop with clarity and confidence.",
   },
 ];
+

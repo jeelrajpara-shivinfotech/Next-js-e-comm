@@ -5,6 +5,7 @@ import Image from "next/image";
 import BaseButton from "./BaseComponents/BaseButton";
 import { homePageConsts } from "@/constants/homePageConstants";
 import { Category, CategoryCarouselProps } from "@/types/category";
+import Link from "next/link";
 
 export default function CategoryCarousel({ categories }: CategoryCarouselProps) {
   const responsiveOptions = [
@@ -43,7 +44,11 @@ export default function CategoryCarousel({ categories }: CategoryCarouselProps) 
           />
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex flex-col items-center justify-center text-center p-4">
             <h2 className="text-2xl font-semibold mb-4 text-white">{item?.title}</h2>
-            <BaseButton className="bg-white hover:bg-black hover:text-white">{homePageConsts?.shopNow}</BaseButton>
+            <BaseButton className="bg-white hover:bg-black hover:text-white">
+              <Link href="/shop">
+                {homePageConsts?.shopNow}
+              </Link>
+            </BaseButton>
           </div>
 
         </div>
