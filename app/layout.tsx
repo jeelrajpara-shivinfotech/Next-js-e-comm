@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/BaseComponents/BaseNavbar";
 import Footer from "@/components/BaseComponents/BaseFooter";
 import ReduxProvider from "@/slicer/provider";
-
+import CartHydrator from "@/components/CartHydrator";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,6 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
+          <CartHydrator/>
           <Navbar />
           {children}
           <Footer />
