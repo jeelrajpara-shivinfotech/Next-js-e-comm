@@ -1,28 +1,16 @@
-import Link from "next/link";
-import { GoDotFill } from "react-icons/go";
+"use client"
+import { motion } from "framer-motion";
 
-interface BreadcrumbProps {
-  title: string;
-  homeLabel?: string;
-  currentLabel?: string;
-}
-
-export default function BaseHeader({
-  title,
-  homeLabel,
-  currentLabel,
-}: BreadcrumbProps) {
+export default function BaseAnimatedHeading({ title }: { title: string }) {
   return (
-    <section className="w-full bg-gray-200/50 py-20 text-center">
-      <h1 className="text-4xl font-medium mb-4">{title}</h1>
-
-      <div className="flex justify-center items-center gap-2 text-gray-600">
-        <Link href="/" className="text-xl">
-          {homeLabel}
-        </Link>
-        <GoDotFill/>
-        <div className="text-black font-medium text-xl">{currentLabel}</div>
-      </div>
-    </section>
+    <motion.h2
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="text-4xl text-center font-medium font-jost"
+    >
+      {title}
+    </motion.h2>
   );
 }

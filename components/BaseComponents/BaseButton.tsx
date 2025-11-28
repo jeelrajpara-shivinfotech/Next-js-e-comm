@@ -7,6 +7,7 @@ interface BaseButtonProps {
   disabled?: boolean;
   className?: string;
   fullWidth?: boolean;
+  ariaLabel?: string;
 }
 
 const BaseButton: React.FC<BaseButtonProps> = ({
@@ -16,10 +17,12 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   disabled = false,
   className = "",
   fullWidth = false,
+  ariaLabel
 }) => {
   return (
     <button
       type={type}
+      aria-label={ariaLabel}
       disabled={disabled}
       onClick={onClick}
       className={`

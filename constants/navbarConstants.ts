@@ -1,5 +1,6 @@
 export const navbarConst = {
     cart : "Cart",
+    menu : "Menu"
 } as const
 
 export const navLinks = [

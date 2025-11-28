@@ -6,9 +6,10 @@ import Image from 'next/image';
 import logo from "@/assets/logo.webp"
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
-import { navLinks } from '@/constants/navbarConstants';
+import { navbarConst, navLinks } from '@/constants/navbarConstants';
 import CartSidebar from "@/components/CartSidebar";
 import BaseCartIcon from './BaseCartIcon';
+import BaseButton from './BaseButton';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,12 +39,13 @@ export default function Navbar() {
               <BaseCartIcon onClick={() => setCartOpen(true)} />
             </div>
             <div className="flex items-center gap-4 md:hidden">
-              <button
+              <BaseButton
+                ariaLabel={navbarConst.menu}
                 onClick={() => setIsOpen(true)}
                 className="text-foreground hover:text-primary transition-colors"
               >
                 <FaBarsStaggered className="w-6 h-6" />
-              </button>
+              </BaseButton>
               <BaseCartIcon onClick={() => setCartOpen(true)} />
             </div>
           </div>
@@ -64,10 +66,10 @@ export default function Navbar() {
           `}
         >
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
-            <span className="text-lg font-semibold">Menu</span>
-            <button onClick={() => setIsOpen(false)}>
+            <span className="text-lg font-semibold">{navbarConst.menu}</span>
+            <BaseButton onClick={() => setIsOpen(false)} ariaLabel={navbarConst.menu}>
               <IoCloseSharp className="w-6 h-6" />
-            </button>
+            </BaseButton>
           </div>
           <div className="flex flex-col py-4">
             {navLinks?.map((link) => (
