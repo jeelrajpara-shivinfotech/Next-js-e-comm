@@ -1,25 +1,18 @@
-"use client";
-
+"use client"
+import { loadCart } from "@/slicer/cartSlice";
+import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { clearCart, loadCart } from "@/slicer/cartSlice";
 
 export default function CartHydrator() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const status = params.get("status");
-    if (status === "success") {
-      dispatch(clearCart());
-      localStorage.removeItem("cart");
-      return;
+    const savedCart = Cookies.get("cart");
+    if (savedCart) {
+      dispatch(loadCart(JSON.parse(savedCart)));
     }
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      dispatch(loadCart(JSON.parse(storedCart)));
-    }
-  }, [dispatch]);
+  }, []);
 
   return null;
 }
