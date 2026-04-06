@@ -63,6 +63,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                                 <div key={item.id} className="flex gap-4">
                                     <img
                                         src={item.image}
+                                        alt={cartConst?.checkout}
                                         className="w-20 h-20 bg-gray-100 p-2 rounded object-contain"
                                     />
 
@@ -84,12 +85,12 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                                                 <FaPlus className="h-4 w-4" />
                                             </button>
                                         </div>
-                                        <button
+                                        <BaseButton
                                             onClick={() => dispatch(removeFromCart(item.id))}
                                             className="text-red-500 text-sm mt-2"
                                         >
                                             {cartConst.remove}
-                                        </button>
+                                        </BaseButton>
                                     </div>
                                 </div>
 

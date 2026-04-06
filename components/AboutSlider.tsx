@@ -104,8 +104,7 @@ export default function AboutSlider() {
                     numVisible={1.2}
                     numScroll={1}
                     responsiveOptions={responsiveOptions}
-                    showIndicators={false}
-                    showNavigators={false}
+                    showNavigators={true}
                     circular
                 />
             </motion.div>
